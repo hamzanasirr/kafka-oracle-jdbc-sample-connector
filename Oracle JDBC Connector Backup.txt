@@ -1,0 +1,26 @@
+name=hamza-oracle-jdbc-connect-19
+connector.class=io.confluent.connect.jdbc.JdbcSourceConnector
+tasks.max=1
+connection.url=jdbc:oracle:thin:@192.168.2.220:1521/orcl
+connection.user=C##HAMZA
+connection.password=admin
+# table.whitelist=NEWTABLETEST
+query=select cast(id as number(5, 0)) as ID, NAME from NewTableTest
+mode=incrementing
+incrementing.column.name=ID
+topic.prefix=oracle-hamza-NEWTABLETEST
+schema.pattern=C##HAMZA
+numeric.mapping=best_fit
+dialect.name=OracleDatabaseDialect
+timestamp.delay.interval.ms=5000
+key.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter=org.apache.kafka.connect.json.JsonConverter
+key.converter.schemas.enable=false
+value.converter.schemas.enable=false
+decimal.handling.mode=double
+include.schema.changes=false
+key.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter=org.apache.kafka.connect.json.JsonConverter
+
+# Two minutes wait based batching
+poll.interval.ms=180000
